@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "906274764325",
+    "project_id": "recon-parkin-spot",
+    "storage_bucket": "recon-parkin-spot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906274764325:android:1f2d880230480bc702f1cc",
+        "android_client_info": {
+          "package_name": "com.example.recon_ps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906274764325-slniq45mv84ue78ufan92v57l9cskbns.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD77iywMqOIQar-3W-FcN7B6TcejG2AMSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906274764325-slniq45mv84ue78ufan92v57l9cskbns.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906274764325-5fpbb5hrcsau60vfls7pm7o8k5b46lt1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.reconPs"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
