@@ -27,12 +27,12 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'First Page',
+            icon: Icon(Icons.map),
+            label: 'RECON',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Second Page',
+            label: 'SETTINGS',
           ),
         ],
       ),
