@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'recon_page.dart';
+import 'user_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-  final List<Widget> _children = [
-    FirstPage(),
-    SecondPage(),
-  ];
+  final PageController _pageController = PageController(initialPage: 0);
 
   void onTabTapped(int index) {
     setState(() {
@@ -21,18 +22,38 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex],
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        children: const <Widget>[
+          FirstPage(),
+          SecondPage(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.lightBlueAccent,
+        unselectedItemColor: Colors.grey,
         currentIndex: _currentIndex,
-        items: [
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+            _pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          });
+        },
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
+            icon: SizedBox.shrink(),
             label: 'RECON',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'SETTINGS',
+            icon: SizedBox.shrink(),
+            label: 'USER',
           ),
         ],
       ),
@@ -40,20 +61,25 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+
 class FirstPage extends StatelessWidget {
+  const FirstPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('First Page'),
+    return const Center(
+      child: ReconPage(),
     );
   }
 }
 
 class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Second Page'),
+    return const Center(
+      child: UserPage(),
     );
   }
 }

@@ -3,11 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -29,20 +31,19 @@ class _LoginPageState extends State<LoginPage> {
       // Check if the query returned any documents
       if (querySnapshot.docs.isNotEmpty) {
         // The login credentials are correct, navigate to the home page
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage())
-          );
+        //Navigator.of(context).pushReplacementNamed("homePage");
+        Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) => const HomePage())
+        );
       } else {
         // The login credentials are incorrect, show an error message
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Invalid username or password'),
           duration: Duration(seconds: 3),
         ));
       }
     } catch (e) {
-      print(e.toString());
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('An error occurred'),
         duration: Duration(seconds: 3),
       ));
@@ -54,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
+
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
@@ -96,18 +98,29 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _signIn();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(350, 50), backgroundColor: Colors.lightBlueAccent),
-                  child: const Text('Login',
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    //color: Colors.blue,
+                  ),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _signIn();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(350, 50),
+                      backgroundColor: Colors.lightBlueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                  ),
+                    child: const Text('Login',
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 30.0),
