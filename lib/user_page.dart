@@ -23,7 +23,7 @@ class UserPage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.lightBlueAccent!, width: 2),
+                  side: const BorderSide(color: Colors.lightBlueAccent, width: 2),
                 ),
               ),
               child:  Row(
@@ -51,7 +51,7 @@ class UserPage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.lightBlueAccent!, width: 2),
+                  side: const BorderSide(color: Colors.lightBlueAccent, width: 2),
                 ),
               ),
               child:  Row(
@@ -84,6 +84,7 @@ class UserPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
+
               child: const Text('Log out',
                 style: TextStyle(
                     fontSize: 25,
