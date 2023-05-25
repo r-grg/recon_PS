@@ -3,23 +3,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:recon_ps/home_page.dart';
 import 'firebase_options.dart';
 import 'login_page.dart';
-import 'home_page.dart';
 
 void main() async {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage()
+    return MaterialApp(
+      home: LoginPage(),
     );
   }
 }
-

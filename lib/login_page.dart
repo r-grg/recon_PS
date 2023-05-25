@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:recon_ps/forgot_password.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
-
   @override
-  LoginPageState createState() => LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -31,22 +30,27 @@ class LoginPageState extends State<LoginPage> {
       // Check if the query returned any documents
       if (querySnapshot.docs.isNotEmpty) {
         // The login credentials are correct, navigate to the home page
-        //Navigator.of(context).pushReplacementNamed("homePage");
-        Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => const HomePage())
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
         );
       } else {
         // The login credentials are incorrect, show an error message
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Invalid username or password'),
-          duration: Duration(seconds: 3),
-        ));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Invalid username or password'),
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('An error occurred'),
-        duration: Duration(seconds: 3),
-      ));
+      print(e.toString());
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An error occurred'),
+          duration: Duration(seconds: 3),
+        ),
+      );
     }
   }
 
@@ -55,7 +59,6 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-
           padding: const EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
@@ -98,28 +101,24 @@ class LoginPageState extends State<LoginPage> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    //color: Colors.blue,
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _signIn();
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(350, 50),
+                    backgroundColor: Colors.lightBlueAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _signIn();
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(350, 50),
-                      backgroundColor: Colors.lightBlueAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                  ),
-                    child: const Text('Login',
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w500),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
@@ -127,6 +126,10 @@ class LoginPageState extends State<LoginPage> {
                 GestureDetector(
                   onTap: () {
                     // Navigate to Forgot Password screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ForgotPasswordPage()),
+                    );
                   },
                   child: const Text(
                     'Forgot my password',
@@ -137,9 +140,10 @@ class LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 20.0),
+                /*
                 GestureDetector(
                   onTap: () {
-                    // Navigate to Create Account screen
+
                   },
                   child: const Text(
                     'Create an account',
@@ -148,7 +152,7 @@ class LoginPageState extends State<LoginPage> {
                       decoration: TextDecoration.underline,
                     ),
                   ),
-                ),
+                ), */
               ],
             ),
           ),

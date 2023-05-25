@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:recon_ps/parking_spot.dart';
 import 'login_page.dart';
+import 'user_account.dart';
 
 class UserPage extends StatelessWidget {
   const UserPage({super.key});
@@ -16,7 +18,11 @@ class UserPage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                // Navigate to account page
+                // Navigate to Parking page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ParkingSpotPage()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(280, 50),
@@ -33,7 +39,8 @@ class UserPage extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.lightBlueAccent,
                           fontSize: 25,
-                          fontWeight: FontWeight.w500)
+                          //fontWeight: FontWeight.w500
+                      )
                   ),
                   Icon(Icons.arrow_forward_ios,
                     color: Colors.lightBlueAccent,
@@ -45,6 +52,10 @@ class UserPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Navigate to account page
+               /* Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserProfilePage()),
+                );*/
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(280, 50),
@@ -61,7 +72,8 @@ class UserPage extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.lightBlueAccent,
                           fontSize: 25,
-                          fontWeight: FontWeight.w500)
+                          //fontWeight: FontWeight.w500
+                      )
                   ),
                   Icon(Icons.arrow_forward_ios,
                     color: Colors.lightBlueAccent,
@@ -75,7 +87,7 @@ class UserPage extends StatelessWidget {
                 await FirebaseAuth.instance.signOut();
                 Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(250, 50),
@@ -97,3 +109,6 @@ class UserPage extends StatelessWidget {
     );
   }
 }
+
+
+
